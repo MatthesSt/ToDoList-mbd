@@ -16,17 +16,24 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
+
+//Old code 
+/*Route::get('/', function () {
     return redirect("/dashboard");
-});
+});*/
+
+Route::get(
+    '/',
+    [DashboardController::class, "index"]
+)->middleware([/*'auth',*/'verified'])->name('dashboard');
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware([/*'auth',*/'verified'])->name('dashboard');
+    return Inertia::render('Dashboard.vue');
+})/*->middleware(['auth','verified'])*/->name('Dashboard');
 
-Route::get('/readonly', function () {
-    return Inertia::render('Readonly');
-})->name('readonly');
+// Route::get('/readonly', function () {
+//     return Inertia::render('Readonly');
+// })->name('readonly');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

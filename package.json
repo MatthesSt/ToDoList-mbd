@@ -3,7 +3,10 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vue-tsc && vite build && vite build --ssr"
+        "build": "vue-tsc && vite build && vite build --ssr",
+        "backend": "php artisan serve",
+        "reset": "php artisan migrate:fresh --seed",
+        "updateMBD": "npm i github:MBD-Team/CustomMBDComponents"
     },
     "devDependencies": {
         "@inertiajs/vue3": "^1.0.0",
